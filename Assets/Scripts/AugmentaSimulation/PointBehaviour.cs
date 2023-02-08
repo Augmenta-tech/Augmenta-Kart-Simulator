@@ -6,10 +6,8 @@ public class PointBehaviour : MonoBehaviour {
 
     [Header("Parameters to fill")]
     public TextMesh pointInfoText;
-    public Transform point;
     public Transform speedPivot;
     public Transform orientationPivot;
-    public new Collider collider;
     public Material velocityMaterial;
     public Material orientationMaterial;
     public Color velocityColor;
@@ -87,7 +85,7 @@ public class PointBehaviour : MonoBehaviour {
         ageInFrames = 0;
         ageInSeconds = 0;
 
-        UpdatePoint();
+        //UpdatePoint();
     }
 
     private void Update() {
@@ -112,10 +110,10 @@ public class PointBehaviour : MonoBehaviour {
         ageInSeconds += Time.deltaTime;
 
         //Update point
-        UpdatePoint();
+        //UpdatePoint();
 
         //Udpate text
-        pointInfoText.text = "ID : " + id + '\n' + '\n' + "OID : " + oid;
+        pointInfoText.text = "ID : " + id + '\n' + "OID : " + oid;
     }
 
     private void LateUpdate() {
@@ -181,10 +179,10 @@ public class PointBehaviour : MonoBehaviour {
         } else {
             if(_oldVelocityMagnitude >= speedThresholdForOrientation) {
                 //Update offset
-                _orientationOffset = orientation - point.transform.localRotation.eulerAngles.z;
+                _orientationOffset = orientation - transform.localRotation.eulerAngles.z;
             }
 
-            orientation = point.transform.localRotation.eulerAngles.z + _orientationOffset;
+            orientation = transform.localRotation.eulerAngles.z + _orientationOffset;
         }
 
         orientation = orientation >= 0 ? orientation : orientation + 360.0f;
@@ -199,7 +197,7 @@ public class PointBehaviour : MonoBehaviour {
 
     public void UpdatePointColor(Color color)
     {
-        point.GetComponent<MeshRenderer>().material.SetColor("_BorderColor", color);
+        //point.GetComponent<MeshRenderer>().material.SetColor("_BorderColor", color);
     }
 
     void UpdatePointSize() {
@@ -215,8 +213,8 @@ public class PointBehaviour : MonoBehaviour {
         //Enforce that width >= height
         size.x = Mathf.Max(size.x, size.y);
 
-        point.transform.localScale = Vector3.one;
-        point.transform.localScale = new Vector3(size.x / point.transform.lossyScale.x, size.y / point.transform.lossyScale.y, size.z / point.transform.lossyScale.z);
+        transform.localScale = Vector3.one;
+        transform.localScale = new Vector3(size.x / transform.lossyScale.x, size.y / transform.lossyScale.y, size.z / transform.lossyScale.z);
     }
 
     private void UpdatePointPosition() {
@@ -245,9 +243,13 @@ public class PointBehaviour : MonoBehaviour {
     private void UpdatePointRotation() {
 
         //Angle from displacement
-        Vector3 displacement = transform.position - _oldPosition;
+        float angle = _oldAngle;
 
-        float angle = -Mathf.Atan(displacement.x / displacement.z) * Mathf.Rad2Deg;
+        if (transform.position != _oldPosition) {
+            Vector3 displacement = transform.position - _oldPosition;
+
+            angle = -Mathf.Atan(displacement.x / displacement.z) * Mathf.Rad2Deg;
+        }
 
         //Debug.Log("Displacement = " + displacement.ToString("F6") + "; tanValue = "+ displacement.x / displacement.z + "; angle(rad) = "+ -Mathf.Atan(displacement.x / displacement.z) + "; angle(deg) = " + angle);
 
@@ -255,7 +257,7 @@ public class PointBehaviour : MonoBehaviour {
         angle += (Mathf.PerlinNoise(id * 35, Time.time * rotationNoiseFrequency) - 0.5f) * 2.0f * rotationNoiseAmplitude;
 
         if (Mathf.Abs(_oldAngle - angle) < 10) {
-            point.transform.localRotation = Quaternion.Euler(transform.localRotation.x, transform.localRotation.y, angle);
+            transform.localRotation = Quaternion.Euler(transform.localRotation.x, transform.localRotation.y, angle);
         }
 
         _oldAngle = angle;
@@ -271,7 +273,7 @@ public class PointBehaviour : MonoBehaviour {
     public void HidePoint() {
 
         pointInfoText.gameObject.SetActive(false);
-        point.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         speedPivot.gameObject.SetActive(false);
         orientationPivot.gameObject.SetActive(false);
     }
@@ -279,7 +281,7 @@ public class PointBehaviour : MonoBehaviour {
     public void ShowPoint() {
 
         pointInfoText.gameObject.SetActive(true);
-        point.gameObject.SetActive(true);
+        gameObject.SetActive(true);
         speedPivot.gameObject.SetActive(true);
         orientationPivot.gameObject.SetActive(true);
     }

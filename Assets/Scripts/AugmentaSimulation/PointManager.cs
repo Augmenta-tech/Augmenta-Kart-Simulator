@@ -381,9 +381,19 @@ public class PointManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject()) {
             _ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(_ray, out _raycastHit, Mathf.Infinity, pointsLayer)) {
+            if (Physics.Raycast(_ray, out _raycastHit, Mathf.Infinity, pointsLayer))
+            {
 
-                RemovePoint(_raycastHit.transform.GetComponent<PointBehaviour>().id);
+	            Transform pointTransform = _raycastHit.transform;
+
+	            while (pointTransform.tag != "AugmentaPoint")
+	            {
+		            pointTransform = pointTransform.parent;
+	            }
+
+				PointBehaviour pointBehaviourHit = pointTransform.GetComponent<PointBehaviour>();
+
+				RemovePoint(pointBehaviourHit.id);
                 _desiredPointsCount--;
             }
         }
@@ -515,10 +525,11 @@ public class PointManager : MonoBehaviour {
 		newPointBehaviour.pointColor = Color.HSVToRGB(UnityEngine.Random.value, 0.85f, 0.75f);
 		newPointBehaviour.manager = this;
         newPointBehaviour.UpdatePointColor(mute ? Color.gray : newPointBehaviour.pointColor);
-		newPoint.transform.parent = transform;
+		newPoint.transform.parent = transform.parent;
 		newPoint.transform.localPosition = GetNewPointPosition();
 		newPointBehaviour.speed = speed;
 		newPointBehaviour.id = _highestId;
+		newPoint.name = "Augmenta Point " + _highestId.ToString();
 		newPointBehaviour.size = new Vector3(UnityEngine.Random.Range(minPointSize.x, maxPointSize.x),
                                              UnityEngine.Random.Range(minPointSize.y, maxPointSize.y),
                                              UnityEngine.Random.Range(minPointSize.z, maxPointSize.z));
@@ -943,7 +954,7 @@ public class PointManager : MonoBehaviour {
         float pointX = 0.5f + behaviour.transform.position.x / width;
         float pointY = 0.5f - behaviour.transform.position.z / height;
 
-        float rotation = behaviour.point.transform.localRotation.eulerAngles.z >= 0 ? behaviour.point.transform.localRotation.eulerAngles.z : behaviour.point.transform.localRotation.eulerAngles.z + 360.0f ;
+        float rotation = behaviour.transform.localRotation.eulerAngles.z >= 0 ? behaviour.transform.localRotation.eulerAngles.z : behaviour.transform.localRotation.eulerAngles.z + 360.0f ;
 
         msg.Append(_frameCounter);                      // Frame number
         msg.Append(behaviour.id);                       // id ex : 42th object to enter stage has id=42
@@ -1046,7 +1057,7 @@ public class PointManager : MonoBehaviour {
         var behaviour = obj.GetComponent<PointBehaviour>();
         float pointX = 0.5f + behaviour.transform.position.x / width;
         float pointY = 0.5f - behaviour.transform.position.z / height;
-        float rotation = behaviour.point.transform.localRotation.eulerAngles.z >= 0 ? behaviour.point.transform.localRotation.eulerAngles.z : behaviour.point.transform.localRotation.eulerAngles.z + 360.0f;
+        float rotation = behaviour.transform.localRotation.eulerAngles.z >= 0 ? behaviour.transform.localRotation.eulerAngles.z : behaviour.transform.localRotation.eulerAngles.z + 360.0f;
 
         return "{\n\"frame\":" + _frameCounter.ToString() + ",\n\"id\":" + behaviour.id.ToString() +
               ",\n\"oid\":" + behaviour.oid.ToString() + ",\n\"age\":" + behaviour.ageInSeconds.ToString() +
