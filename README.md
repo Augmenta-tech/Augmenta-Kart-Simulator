@@ -2,7 +2,7 @@
 
 Work without Augmenta hardware by simulating karts moving in space.
 
-![](https://media.giphy.com/media/lRdaGBXEvU5mAj0z5K/giphy.gif) 
+![](https://github.com/Augmenta-tech/Augmenta-Kart-Simulator/blob/master/Resources/Documentation/AugmentaKartSimulator.gif) 
 
 ## Download
 
