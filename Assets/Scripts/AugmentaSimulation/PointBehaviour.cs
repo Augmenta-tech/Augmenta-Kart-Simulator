@@ -174,18 +174,20 @@ public class PointBehaviour : MonoBehaviour {
 
     private void ComputePointOrientation() {
 
-        if (normalizedVelocity.magnitude >= speedThresholdForOrientation) {
-            orientation = _speedAngle;
-        } else {
-            if(_oldVelocityMagnitude >= speedThresholdForOrientation) {
-                //Update offset
-                _orientationOffset = orientation - transform.localRotation.eulerAngles.z;
-            }
+        //if (normalizedVelocity.magnitude >= speedThresholdForOrientation) {
+        //    orientation = _speedAngle;
+        //} else {
+        //    if(_oldVelocityMagnitude >= speedThresholdForOrientation) {
+        //        //Update offset
+        //        _orientationOffset = orientation - transform.localRotation.eulerAngles.x;
+        //    }
 
-            orientation = transform.localRotation.eulerAngles.z + _orientationOffset;
-        }
+        //    orientation = transform.localRotation.eulerAngles.x + _orientationOffset;
+        //}
 
-        orientation = orientation >= 0 ? orientation : orientation + 360.0f;
+        orientation = -transform.rotation.eulerAngles.y;
+
+		orientation = orientation >= 0 ? orientation : orientation + 360.0f;
     }
 
     private void UpdateOrientationVisualization() {

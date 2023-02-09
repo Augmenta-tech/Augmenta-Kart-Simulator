@@ -1369,7 +1369,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 190, y: 850}
+  m_SizeDelta: {x: 250, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505076114
 MonoBehaviour:
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_text: '<b><size=18>ABOUT</size></b>
 
 
-    Augmenta Simulator v3.0
+    Augmenta Kart Simulator v3.0
 
     <color=#0088ffff><u><link="AugmentaTech">www.augmenta-tech.com</link></u></color>'
   m_isRightToLeft: 0
@@ -2775,8 +2775,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -120, y: -300}
-  m_SizeDelta: {x: 220, y: 460}
+  m_AnchoredPosition: {x: -143.6, y: -370}
+  m_SizeDelta: {x: 270, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1028407373
 GameObject:
@@ -3728,10 +3728,10 @@ RectTransform:
   m_Father: {fileID: 1022483130}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -435}
-  m_SizeDelta: {x: 190, y: 850}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -435}
+  m_SizeDelta: {x: 250, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846576922
 MonoBehaviour:
@@ -3753,14 +3753,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "           <b><size=18>CONTROLS</size></b>\n\n<b><color=#0088ffff>LeftMouse</color></b>
-    : Create point or move existing point.\n<b><color=#0088ffff>RightMouse</color></b>
-    : Delete point. \n\n<b><color=#0088ffff>M</color></b> : Mute / Unmute all OSC
+  m_text: "                  <b><size=18>CONTROLS</size></b>\n\n<b><color=#0088ffff>LeftMouse</color></b>
+    : Create kart or move existing kart.\n<b><color=#0088ffff>RightMouse</color></b>
+    : Delete kart. \n\n<b><color=#0088ffff>M</color></b> : Mute / Unmute all OSC
     outputs.\n\n<b><color=#0088ffff>H</color></b> : Toggle UI.\n<b><color=#0088ffff>F</color></b>
     : Toggle FPS.\n<b><color=#0088ffff>F1</color></b> : Toggle Help.\n\n<b><color=#0088ffff>Mousewheel
     Scroll</color></b> : Camera zoom. \n<b><color=#0088ffff>Mousewheel Clic</color></b>
     : Pan camera. \n<b><color=#0088ffff>Alt+LeftMouse</color></b> : Rotate camera.\n<b><color=#0088ffff>R</color></b>
-    : Reset camera.\n<b><color=#0088ffff>P</color></b> : Switch camera projection."
+    : Reset camera.\n<b><color=#0088ffff>P</color></b> : Switch camera projection.\n\n<b><color=red>PLAYER
+    1</color></b>\n<b><color=#0088ffff>Z/S</color></b> : Accelerate / Brake\n<b><color=#0088ffff>Q/D</color></b>
+    : Turn Left / Right\n<b><color=#0088ffff>Tab</color></b> : Switch controlled
+    kart\n\n<b><color=green>PLAYER 2</color></b>\n<b><color=#0088ffff>Up/Down Arrows</color></b>
+    : Accelerate / Brake\n<b><color=#0088ffff>Left/Right Arrows</color></b> : Turn
+    Left / Right\n<b><color=#0088ffff>Backspace</color></b> : Switch controlled kart"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8033fece510d15445acd410713d019a1, type: 2}
   m_sharedMaterial: {fileID: -1975028061908581088, guid: 8033fece510d15445acd410713d019a1,

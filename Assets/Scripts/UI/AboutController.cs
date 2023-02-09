@@ -9,6 +9,6 @@ public class AboutController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text.text = "<b><size=18>ABOUT</size></b>\n \nAugmenta Simulator v"+ Application.version + "\n<color=#0088ffff><u><link=\"AugmentaTech\">www.augmenta-tech.com</link></u></color>";
+        text.text = "<b><size=18>ABOUT</size></b>\n \nAugmenta Kart Simulator v"+ Application.version + "\n<color=#0088ffff><u><link=\"AugmentaTech\">www.augmenta.tech</link></u></color>";
     }
 }

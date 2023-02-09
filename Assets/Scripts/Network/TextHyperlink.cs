@@ -26,7 +26,7 @@ public class TextHyperlink : MonoBehaviour, IPointerClickHandler
 
         if (linkIndex != -1) {
 
-            Application.OpenURL("https://www.augmenta-tech.com");
+            Application.OpenURL("https://www.augmenta.tech");
 
         }
     }
