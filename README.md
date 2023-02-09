@@ -56,6 +56,10 @@ Backspace to switch controlled kart.
 
 For the simulator to create a Zeroconf service on Windows, you need to have Apple Bonjour for Windows installed.
 
+## Known Issues
+
+- Instantiated karts are stretched when resizing the scene. Remove all karts and add them back after resizing the scene to fix the issue.
+
 ## Version
 
 Unity 2022.2.5f1
